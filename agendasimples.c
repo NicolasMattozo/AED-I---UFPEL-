@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define MAX 100;
 
 int menu(void);
 void adicionarNome(char **nome);
