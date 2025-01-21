@@ -11,49 +11,52 @@ void *tempIdade = malloc(10 * sizeof(int));
 void *tempEmail = malloc(500 * sizeof(char));
 void *escolha = malloc(sizeof(int)); //Cria o ponteiro escolha, para armazenar a opção escolhida
 void *pBuffer = malloc(1); //Cria o ponteiro pBuffer, para armazenar os dados
+void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo espaço
 
 
 
  for (;;)
     {
 
-        printf("1- Adicionar Pessoa (Nome, Idade, email)\n 2- Remover Pessoa \n 3- Buscar Pessoa \n 4- Listar todos \n 5- Sair \n" );
-        scanf("%d", (int *)escolha);
+        printf("1- Adicionar Pessoa (Nome, Idade, email)\n 2- Remover Pessoa \n 3- Buscar Pessoa \n 4- Listar todos \n 5- Sair \n");
+    scanf("%d", (int *)escolha);
 
+    switch (*(int *)escolha)
+    {
+    case 1:
+        printf("Digite o Nome: ");
+        scanf("%s", (char *)tempNome); // Armazeno a informação no buffer temporário
 
-        switch (*(int *)escolha)
+        printf("Digite a Idade: ");
+        scanf("%d", (int *)tempIdade); // Armazeno a informação no buffer temporário
+
+        printf("Digite seu Email: ");
+        scanf("%s", (char *)tempEmail); // Armazeno a informação no buffer temporário
+
+        // Calculo o novo tamanho necessário para o buffer
+        void *novoBuffer = realloc(pBuffer, (contador - pBuffer) + strlen((char *)tempNome) + 1 + sizeof(int) + strlen((char *)tempEmail) + 1);
+
+        if (novoBuffer == NULL)
         {
-        case 1:
+            printf("Nao foi possivel alocar memoria.\n");
+            exit(1);
+        }
+        pBuffer = novoBuffer;
 
-            printf("Digite o Nome: ");
-            scanf("%s", (char *)tempNome); //Armazeno a informação no buff
+        // Copia os dados para o buffer realocado
+        memcpy(contador, tempNome, strlen((char *)tempNome) + 1); // copio o nome para meu pBuffer
+        contador = (char *)contador + strlen((char *)tempNome) + 1; // muda o contador para o proximo lugar disponivel
 
-            printf("Digite a Idade:");
-            scanf("%d", (int *)tempIdade); //Armazeno a informação no buff
-           
-            printf("Digite seu Email:");
-            scanf("%s", (char *)tempEmail); //Armazeno a informação no buff
+        memcpy(contador, tempIdade, sizeof(int)); // copio a idade
+        contador = (char *)contador + sizeof(int); // muda o contador
 
-            void *novoBuffer = realloc(pBuffer, strlen((char *)tempNome) + sizeof(int) + strlen((char *)tempEmail));
+        memcpy(contador, tempEmail, strlen((char *)tempEmail) + 1); // copio o email
+        contador = (char *)contador + strlen((char *)tempEmail) + 1; // movo o contador
 
+        printf("Cadastro adicionado com sucesso.\n");
 
-            if (novoBuffer == NULL)
-            {
-                printf("nao foi possivel alocar memoria \n");
-                exit(1);
-            }
-            pBuffer = novoBuffer;
+        break;
 
-            memcpy(pBuffer, tempNome, strlen((char *)tempNome) + 1);
-
-            memcpy((char *)pBuffer + strlen((char *)tempNome) + 1, tempIdade, sizeof(int));
-
-            memcpy((char *)pBuffer + strlen((char *)tempNome) + 1 + sizeof(int), tempEmail, strlen((char *)tempEmail) + 1);
-
-            printf("Seu nome é: %s\n", (char *)pBuffer);
-            printf("Sua idade é: %d\n", *(int *)((char *)pBuffer + strlen((char *)pBuffer) + 1));
-            printf("Seu email é: %s\n", (char *)((char *)pBuffer + strlen((char *)pBuffer) + 1 + sizeof(int)));
-            break;
 
 
         case 2:
