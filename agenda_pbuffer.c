@@ -6,12 +6,14 @@
 int main(void)
 {
 
+void *tempBusca = malloc(500 * sizeof(char));
 void *tempNome = malloc(500 * sizeof(char)); //Cria um ponteiro buff para servir de suporte para armazenar as informações
 void *tempIdade = malloc(10 * sizeof(int));
 void *tempEmail = malloc(500 * sizeof(char));
 void *escolha = malloc(sizeof(int)); //Cria o ponteiro escolha, para armazenar a opção escolhida
 void *pBuffer = malloc(1); //Cria o ponteiro pBuffer, para armazenar os dados
 void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo espaço
+
 
 
 
@@ -44,7 +46,7 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
                 }
                 pBuffer = novoBuffer;
 
-                // Copia os dados para o buffer realocado
+                // Copio os dados para o buffer realocado
                 memcpy(contador, tempNome, strlen((char *)tempNome) + 1); // copio o nome para meu pBuffer
                 contador = (char *)contador + strlen((char *)tempNome) + 1; // muda o contador para o proximo lugar disponivel
 
@@ -61,14 +63,92 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
 
 
     case 2:
-                printf("teste");
-                break;
+            //     {
+            //     printf("Digite o nome que deseja buscar: ");
+            //     scanf("%s", (char *)tempBusca);
+
+            //     void *imprime = (char *)pBuffer;  // imprime recebe o primeiro nome de pBuffer
+            //     while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+
+            //         if(*(char *)imprime == *(char *)tempBusca)
+            //         {
+                    
+            //         printf("Nome: %s\n", (char *)imprime); // Imprime o nome
+            //         imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do nome
+
+                    
+            //         printf("Idade: %d\n", *(int *)(char *)imprime); // Imprime a idade
+            //         imprime += sizeof(int); //incrementa o imprime com o numero de pos da idade
+
+                    
+            //         printf("Email: %s\n", (char *)imprime); // Imprime o email
+            //         imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do email
+
+            //         printf("--------------------------\n");
+                    
+            //         }
+            //         else{
+            //         imprime += strlen((char *)imprime) + 1;
+            //         imprime += sizeof(int);
+            //         imprime += strlen((char *)imprime) + 1;
+            //         }
+            //     }
+            //     free(tempBusca);
+            // }
     case 3:
-                printf("teste");
-                break;
+                {
+                printf("Digite o nome que deseja buscar: ");
+                scanf("%s", (char *)tempBusca);
+
+                void *imprime = (char *)pBuffer;  // imprime recebe o primeiro nome de pBuffer
+                while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+
+                    if(*(char *)imprime == *(char *)tempBusca)
+                    {
+                    
+                    printf("Nome: %s\n", (char *)imprime); // Imprime o nome
+                    imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do nome
+
+                    
+                    printf("Idade: %d\n", *(int *)(char *)imprime); // Imprime a idade
+                    imprime += sizeof(int); //incrementa o imprime com o numero de pos da idade
+
+                    
+                    printf("Email: %s\n", (char *)imprime); // Imprime o email
+                    imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do email
+
+                    printf("--------------------------\n");
+                    
+                    }
+                    else{
+                    imprime += strlen((char *)imprime) + 1;
+                    imprime += sizeof(int);
+                    imprime += strlen((char *)imprime) + 1;
+                    }
+                }
+                free(tempBusca);
+            }
+            break;
     case 4:
-                printf("teste");
-                break;
+                {
+                void *imprime = (char *)pBuffer;  // imprime recebe o primeiro nome de pBuffer
+                while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+                    
+                    printf("Nome: %s\n", (char *)imprime); // Imprime o nome
+                    imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do nome
+
+                    
+                    printf("Idade: %d\n", *(int *)(char *)imprime); // Imprime a idade
+                    imprime += sizeof(int); //incrementa o imprime com o numero de pos da idade
+
+                    
+                    printf("Email: %s\n", (char *)imprime); // Imprime o email
+                    imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do email
+
+                    printf("--------------------------\n");
+                }
+            }
+            break;
     case 5:
                 free(tempNome);
                 free(tempIdade);
