@@ -6,7 +6,7 @@
 int main(void)
 {
 
-void *tempBusca = malloc(500 * sizeof(char));
+
 void *tempNome = malloc(500 * sizeof(char)); //Cria um ponteiro buff para servir de suporte para armazenar as informações
 void *tempIdade = malloc(10 * sizeof(int));
 void *tempEmail = malloc(500 * sizeof(char));
@@ -96,7 +96,10 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
             //     free(tempBusca);
             // }
     case 3:
-                {
+            {
+                void *flag = malloc (sizeof(int));
+                *(int *)flag = 0;
+                void *tempBusca = malloc(500 * sizeof(char));
                 printf("Digite o nome que deseja buscar: ");
                 scanf("%s", (char *)tempBusca);
 
@@ -118,6 +121,7 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
                     imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do email
 
                     printf("--------------------------\n");
+                    *(int *)flag = 1;
                     
                     }
                     else{
@@ -127,6 +131,9 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
                     }
                 }
                 free(tempBusca);
+                if(*(int *)flag == 0){
+                    printf("Nome nao encontrado\n");
+                }
             }
             break;
     case 4:
@@ -157,7 +164,7 @@ void *contador = pBuffer; // Ponteiro 'void' usado como contador para o próximo
                 free(pBuffer);
                 free(contador);
                 printf("Programa Finalizado com Sucesso");
-                exit(1);
+                exit(0);
         }
     }
     return 0;
