@@ -17,6 +17,11 @@ sizeof(int) + //flag
 (100 * sizeof(char)) //dados
 ); 
 
+if(pBuffer == NULL)
+{
+    printf("erro de alocacao / memoria insuficiente");
+}
+
 //VOU CRIAR PONTEIROS PARA APONTAR PARA O INICIO DE CADA DADO DENTRO DO pbuffer
 
 void *op = pBuffer;
@@ -49,6 +54,11 @@ void *contador = dados;
 
                 // Calculo o novo tamanho necessário para o buffer
                 pBuffer = realloc(pBuffer, (contador - pBuffer) + strlen((char *)tempNome) + 1 + sizeof(int) + strlen((char *)tempEmail) + 1);
+
+                if(pBuffer == NULL)
+                    {
+                        printf("erro de alocacao / memoria insuficiente");
+                    }
 
                 // copio os dados para o buffer realocado
                 memcpy(contador, tempNome, strlen((char *)tempNome) + 1); // copio o nome para meu pBuffer
@@ -112,14 +122,18 @@ void *contador = dados;
                     printf("Registro excluido com sucesso\n");
                     
                     }else{
-                    imprime += strlen((char *)imprime) + 1;
-                    imprime += sizeof(int);
-                    imprime += strlen((char *)imprime) + 1;
+                    imprime += strlen((char *)imprime) + 1 + sizeof(int) + strlen((char *)imprime) + 1; 
+                    //aqui enquanto ele nao achar ele segue andando de cadastro em cadastro até achar o nome correto
+
                     }
                 }
 
-                if((int *)flag == NULL){
+               if(*(int *)flag == 1){
+                    printf("--------------------------\n");
+                }else{
+                    printf("--------------------------\n");
                     printf("Nome nao encontrado\n");
+                    printf("--------------------------\n");
                 }
 
             }   
@@ -147,24 +161,36 @@ void *contador = dados;
                     printf("Email: %s\n", (char *)imprime); // Imprime o email
                     imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do email
 
-                    printf("--------------------------\n");
-                    *(int *)flag = 1;
+
+                    *(int *)flag = 1; //se leu o nome ele ativa essa flag
                     
                     }
                     else{
-                    imprime += strlen((char *)imprime) + 1;
-                    imprime += sizeof(int);
-                    imprime += strlen((char *)imprime) + 1;
+                    imprime += strlen((char *)imprime) + 1 + sizeof(int) + strlen((char *)imprime) + 1; 
+                    //aqui enquanto ele nao achar ele segue andando de cadastro em cadastro até achar o nome correto
+
                     }
                 }
-                if((int *)flag == NULL){
+                if(*(int *)flag == 1){
+                    printf("--------------------------\n");
+                }else{
+                    printf("--------------------------\n");
                     printf("Nome nao encontrado\n");
+                    printf("--------------------------\n");
                 }
             }
             break;
     case 4:
                 {
                 void *imprime = (char *)dados;  // imprime recebe o primeiro nome de pBuffer
+
+                if((char *)imprime == (char *)contador){
+                    printf("--------------------------\n");
+                    printf("Nao existem pessoas cadastradas\n");
+                    printf("--------------------------\n");
+                }
+
+
                 while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
                     
                     printf("Nome: %s\n", (char *)imprime); // Imprime o nome
@@ -180,6 +206,7 @@ void *contador = dados;
 
                     printf("--------------------------\n");
                 }
+
             }
             break;
     case 5:
