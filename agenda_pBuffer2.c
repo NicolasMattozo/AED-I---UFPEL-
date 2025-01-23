@@ -24,14 +24,14 @@ if(pBuffer == NULL)
 
 //VOU CRIAR PONTEIROS PARA APONTAR PARA O INICIO DE CADA DADO DENTRO DO pbuffer
 
-void *op = pBuffer;
-void *flag = op + sizeof(int);
-void *tempNome = (char *)flag + sizeof(int);
-void *tempIdade = (char *)tempNome + (50 * sizeof(char));
-void *tempEmail = (char *)tempIdade + sizeof(int);
-void *busca = (char *)tempEmail + (50 * sizeof(char));
-void *dados = (char *)busca + (100 * sizeof(char));
-void *contador = dados;
+void *op = pBuffer; //aponta p inicio do pbuffer
+void *flag = op + sizeof(int); //aponta pro inicio de flag
+void *tempNome = (char *)flag + sizeof(int); //aponta pro inicio de tempnome
+void *tempIdade = (char *)tempNome + (50 * sizeof(char)); //aponta pro inicio de tempidade
+void *tempEmail = (char *)tempIdade + sizeof(int); //aponta pro inicio de tempEmail
+void *busca = (char *)tempEmail + (50 * sizeof(char)); //aponta pro inicio de busca
+void *dados = (char *)busca + (100 * sizeof(char)); //aponta pro inicio de dados
+void *contador = dados; //ponteiro pro inicio de dados que vai atualizando sempre pro ultimo caracter
 
  for (;;)
     {
