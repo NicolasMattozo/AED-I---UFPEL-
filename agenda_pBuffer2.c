@@ -20,7 +20,7 @@ sizeof(int) + //flag
 //VOU CRIAR PONTEIROS PARA APONTAR PARA O INICIO DE CADA DADO DENTRO DO pbuffer
 
 void *op = pBuffer;
-void *flag = (char *)op + sizeof(int);
+void *flag = op + sizeof(int);
 void *tempNome = (char *)flag + sizeof(int);
 void *tempIdade = (char *)tempNome + (50 * sizeof(char));
 void *tempEmail = (char *)tempIdade + sizeof(int);
