@@ -86,7 +86,7 @@ void *contador = dados; //ponteiro pro inicio de dados que vai atualizando sempr
                 void *fim = NULL;         // Posição final do item a excluir
                                           
 
-                while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+                while ((char *)imprime < (char *)contador) { //posição inicial de Dados < posição final do pBuffer
 
                     if (strcmp((char *)imprime, (char *)busca) == 0)//procura pelo nome para excluir
                     {
@@ -145,7 +145,7 @@ void *contador = dados; //ponteiro pro inicio de dados que vai atualizando sempr
                 scanf("%s", (char *)busca);
 
                 void *imprime = (char *)dados;  // imprime recebe o primeiro nome de pBuffer
-                while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+                while ((char *)imprime < (char *)contador) { //posição inicial de Dados < posição final do pBuffer
 
                     if(strcmp((char *)imprime, (char *)busca) == 0)
                     {
@@ -191,7 +191,7 @@ void *contador = dados; //ponteiro pro inicio de dados que vai atualizando sempr
                 }
 
 
-                while ((char *)imprime < (char *)contador) { //posição inicial de pBuffer < posição final do pBuffer
+                while ((char *)imprime < (char *)contador) { //posição inicial de Dados < posição final do pBuffer
                     
                     printf("Nome: %s\n", (char *)imprime); // Imprime o nome
                     imprime += strlen((char *)imprime) + 1; //incrementa o imprime com o numero de pos do nome
