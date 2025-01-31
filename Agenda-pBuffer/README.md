@@ -94,4 +94,4 @@ Apenas registra um Free em pBuffer e printa uma mensagem de despedida.
 
 
 ## Observações
-- Por algum motivo desconhecido o código fica fora da formaatação dentro do Git, porém nas IDEs ele funciona formatado corretamente.
+- Por algum motivo desconhecido o código fica fora da formatação dentro do Git, porém nas IDEs ele funciona formatado corretamente.
