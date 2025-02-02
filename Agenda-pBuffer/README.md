@@ -107,4 +107,4 @@ Apenas registra um Free em pBuffer e printa uma mensagem de despedida.
 
 ## Observações
 - Por algum motivo desconhecido o código fica fora da formatação dentro do Git, porém nas IDEs ele funciona formatado corretamente.
-- O DrMemory esta dando um falso positivo (https://stackoverflow.com/questions/29814337/dr-memory-and-the-mysterious-uninitialized-read), o codigo não possui erros.
+- O DrMemory esta dando um falso positivo (https://stackoverflow.com/questions/29814337/dr-memory-and-the-mysterious-uninitialized-read).
