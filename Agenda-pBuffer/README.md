@@ -88,7 +88,6 @@ Nome não Encontrado: ele roda todo cadastro, ativa a flag e avisa ao usuário q
 **Pesquisar Pessoa:**
 
 ![Pesquisar Nome](image/case3-1.png)
-![](image/case3-2.png)
 
 O modo de busca é identico ao Remover Pessoa, sendo a uníca difença que ao achar o nome ele printa na tela.
 
