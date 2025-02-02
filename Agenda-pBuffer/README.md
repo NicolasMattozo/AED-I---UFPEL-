@@ -6,7 +6,7 @@
 - **Curso:** Ciência da Computação
 
 - ## Organização dos Arquivos
-1. `Agenda_pBuffer.c`: Este arquivo contém a versão final do código.
+1. `agenda_pbuffer.c`: Este arquivo contém a versão final do código.
 
 ## Descrição do Problema
 Faça uma agenda com o seguinte menu:
