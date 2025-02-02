@@ -27,48 +27,48 @@ Não pode usar struct em todo o programa.
 
 **Malloc:**
 
-![Alocação de memória](malloc.png)
+![Alocação de memória](image/malloc.png)
 
 Utilizando Sizeof() foi feita a montagem do malloc para facilitar a aritmética de ponteiros.
 
 **Ponteiros:**
 
-![Uso de Ponteiros](ponteiros.png)
+![Uso de Ponteiros](image/ponteiros.png)
 
 Todos ponteiros sao inicializados usando o endereço de memória de pBuffer, sendo OP o primeiro valor do pBuffer e os endereços seguintes são calculados com base nos ponteiros anteriores.
 
 **Inicializando Ponteiros:**
 
-![Inicializando Ponteiros](Inicializando.png)
+![Inicializando Ponteiros](image/Inicializando.png)
 
 Inicio todos espaços do meu pBuffer, para evitar que em algum momento o "lixo" atrapalhe o andamento do código
 
 **Atualizando Ponteiros:**
 
-![Atualizando Ponteiros](atualiza.png)
+![Atualizando Ponteiros](image/atualiza.png)
 
 Após Excluir (Case 2) e Adicionar (Case 1) eu atualizo meus ponteiros, para evitar erros na memória
 
  **Flag:**
 
-![Uso da Flag em "funções"](flag.png)
+![Uso da Flag em "funções"](image/flag.png)
 
 A flag está presente em duas operações (Excluir Nome e Pesquisar Nome), ela serve apenas para alertar o usuario caso o nome digitado nao seja encontrado.
 
 
 **Adicionar Pessoa:**
-![Adicionar Pessoa](case1-1.png)
+![Adicionar Pessoa](image/case1-1.png)
 
 Os Dados são alocados em "variaveis" temporárias dentro do pBuffer.
 
 Logo na sequencia temos o Realloc, que determina qual tamanho correto e ajustado do espaço de memória. Detalhe para o (contador - pBuffer) que após a primeira leitura, indica quantos espaços de memória o realloc deve realocar.
 
-![](case1-2.png)
+![](image/case1-2.png)
 
 Os dados alocados nas "variaveis" temporárias, agora são movidos para o espaço já realocado e reservado para os dados através do memcpy, e o contador tambem é incrementado para apontar para o nome espaço disponivel para escrever um novo cadastro.
 
 **Remover Pessoa:**
-![Remover](case2-1.png)
+![Remover](image/case2-1.png)
 
 O nome a ser removido é lido e armazenado numa "varivel" temporária busca, após isso é inicado tres ponteiros:
 Imprime = aponta para o inicio do espaço reservado para dados.
@@ -78,7 +78,7 @@ Fim = Aponta para o ultímo caracter do cadastro a ser excluido.
 Após isso ele cria um while que, enquanto a posição inicial de Dados for menor que a posição final do pBuffer, ele vai seguir no loop.
 Dentro desse while a cada nome lido acontece uma comparação para detectar se foi lido o nome digitado.
 
-![](case2-2.png)
+![](image/case2-2.png)
 
 Nome Encontrado: ele lê todo cadastro, arruma os ponteiros de Inicio e Fim, cria um Novo ponteiro como auxiliar que aponta para Imprime.
 Após isso ele move todos os dados existentes depois do final do cadastro a ser excluido para sobreescrever, logo é feito o realloc para ajustar novamente o tamanho do pBuffer, e o contador vai ser atualizado para receber o ultimo endereço de pBuffer.
@@ -87,21 +87,21 @@ Nome não Encontrado: ele roda todo cadastro, ativa a flag e avisa ao usuário q
 
 **Pesquisar Pessoa:**
 
-![Pesquisar Nome](case3-1.png)
-![](case3-2.png)
+![Pesquisar Nome](image/case3-1.png)
+![](image/case3-2.png)
 
 O modo de busca é identico ao Remover Pessoa, sendo a uníca difença que ao achar o nome ele printa na tela.
 
 **Mostrar Pessoas:**
 
-![Mostrar Pessoas](case4-1.png)
+![Mostrar Pessoas](image/case4-1.png)
 
 O modo de Mostrar nome tambem é o mesmo, sendo a maior diferença que ele nao compara nome, printando todos os dados existentes dentro do pBuffer a partir do ponteiro de Dados.
 
 
 **Sair:**
 
-![Sair](case5-1.png)
+![Sair](image/case5-1.png)
 
 Apenas registra um Free em pBuffer e printa uma mensagem de despedida.
 
