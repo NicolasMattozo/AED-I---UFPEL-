@@ -74,6 +74,7 @@ Após isso ele move todos os dados existentes depois do final do cadastro a ser 
 Nome não Encontrado: ele roda todo cadastro, ativa a flag e avisa ao usuário que o nome não foi encontrado.
 
 **Pesquisar Pessoa:**
+
 ![Pesquisar Nome](case3-1.png)
 ![](case3-2.png)
 
