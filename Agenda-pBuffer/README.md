@@ -37,6 +37,18 @@ Utilizando Sizeof() foi feita a montagem do malloc para facilitar a aritmética 
 
 Todos ponteiros sao inicializados usando o endereço de memória de pBuffer, sendo OP o primeiro valor do pBuffer e os endereços seguintes são calculados com base nos ponteiros anteriores.
 
+**Inicializando Ponteiros:**
+
+![Inicializando Ponteiros](Inicializando.png)
+
+Inicio todos espaços do meu pBuffer, para evitar que em algum momento o "lixo" atrapalhe o andamento do código
+
+**Atualizando Ponteiros:**
+
+![Atualizando Ponteiros](atualiza.png)
+
+Após Excluir (Case 2) e Adicionar (Case 1) eu atualizo meus ponteiros, para evitar erros na memória
+
  **Flag:**
 
 ![Uso da Flag em "funções"](flag.png)
@@ -96,3 +108,4 @@ Apenas registra um Free em pBuffer e printa uma mensagem de despedida.
 
 ## Observações
 - Por algum motivo desconhecido o código fica fora da formatação dentro do Git, porém nas IDEs ele funciona formatado corretamente.
+- O DrMemory esta dando um falso positivo (https://stackoverflow.com/questions/29814337/dr-memory-and-the-mysterious-uninitialized-read), o codigo não possui erros.
