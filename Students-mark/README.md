@@ -52,3 +52,10 @@ Faço um loop com base no meu numero de extraStudents e a cada extraStudents eu 
 
 Crio um somátario, onde eu somo minhas classes e armazeno em média total, e após isso eu retorno a minha (média / numero de classes)
 
+
+**TESTES:**
+![testes](imgs/case-test1.png)
+
+![testes](imgs/case-test2.png)
+
+
