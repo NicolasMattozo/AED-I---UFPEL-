@@ -28,27 +28,27 @@ Em um primeiro momento foi realizado o calculo completo das médias, calculando 
 
 **Estrutura de Dados:**
 
-![Estrutura de Dados](image/lista1.png)
-![Estrutura de Dados](image/lista2.png)
-![Estrutura de Dados](image/lista3.png)
+![Estrutura de Dados](imgs/lista1.png)
+![Estrutura de Dados](imgs/lista2.png)
+![Estrutura de Dados](imgs/lista3.png)
 
 Foi Criado a estrutura padrão da Lista de Prioridade, onde a ordenação da lista acontece pela diferença nas médias, diferença essa que é calculada com base na diferença que um aluno a mais passando causaria na média, sendo a ordenação feita por quanto menor a diferença mais atras da fila fica a classe
 
 **Manipulação da Função:**
 
-![Função](image/function1.png)
+![Função](imgs/function1.png)
 
 Crio um loop para inserir os dados dentro da fila, armazeno numero de alunos que passou no exame e numero total de alunos para conseguir fazer a média de classe, e a partir dessa média eu consigo calcular qual a diferença de (média + 1) - média, e por esta conta eu obtenho o "peso"
 
 **Relacionando extraStudents:**
 
-![Função](image/function2.png)
+![Função](imgs/function2.png)
 
 Faço um loop com base no meu numero de extraStudents e a cada extraStudents eu tiro uma classe da fila e adiciono +1 aluno e +1 aluno aprovado, e após isso eu recalculo a diferença e só depois eu subo para minha lista a classe com a nova diferença
 
 **Relacionando extraStudents:**
 
-![Função](image/function3.png)
+![Função](imgs/function3.png)
 
 Crio um somátario, onde eu somo minhas classes e armazeno em média total, e após isso eu retorno a minha (média / numero de classes)
 
