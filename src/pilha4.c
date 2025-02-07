@@ -1,116 +1,125 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+typedef struct nodoPilha{
+    int sanduiche;
+    struct nodoPilha *prox;
+} nodoPilha;
 
-int countStudents(int* students, int studentsSize, int* sandwiches, int sandwichesSize);
+typedef struct nodoFila{
+    int alunos;
+    struct nodoFila *prox;
+} nodoFila;
 
-int main(){
-    int studentsSize = 4;
-    int sandwichesSize = 4;
-    int sandwiches[] = {0,1,0,1};
-    int students[] = {1,1,0,0};
-    int resultado = countStudents(students, studentsSize, sandwiches, sandwichesSize);
+typedef struct fila{
+    nodoFila *inicio;
+    nodoFila *ultimo;
+} fila;
 
-    printf("o resultado é %d", resultado);
+typedef struct pilha{
+    nodoPilha *topo;
+} pilha;
 
+// Funções da pilha
+pilha* initPilha(){
+    pilha* p = (pilha *) malloc(sizeof(pilha));
+    p->topo = NULL;
+    return p;
+}
 
+void push(pilha *p, int c){
+    nodoPilha *novoNodo = (nodoPilha *) malloc(sizeof(nodoPilha));
+    novoNodo->sanduiche = c;
+    novoNodo->prox = p->topo;
+    p->topo = novoNodo;
+}
+
+int pop(pilha *p){   
+    if (p->topo == NULL) return -1;
+    nodoPilha *temp = p->topo;
+    int c = temp->sanduiche;
+    p->topo = temp->prox;
+    free(temp);
+    return c;     
+}
+
+int top(pilha *p){
+    if (p->topo == NULL) return -1;
+    return p->topo->sanduiche;
+}
+
+bool IsEmptyP(pilha *p){
+    return (p->topo == NULL);
+}
+
+// Funções da fila
+fila* initFila(){
+    fila* f = (fila *) malloc(sizeof(fila));
+    f->inicio = NULL;
+    f->ultimo = NULL;
+    return f;
+}
+
+void enqueue(fila *f, int c){
+    nodoFila *novoNodo = (nodoFila *) malloc(sizeof(nodoFila));
+    novoNodo->alunos = c;
+    novoNodo->prox = NULL;
+
+    if (f->inicio == NULL){
+        f->inicio = novoNodo;
+        f->ultimo = novoNodo;
+    } else {
+        f->ultimo->prox = novoNodo;
+        f->ultimo = novoNodo;
+    }
+}
+
+int dequeue(fila *f){
+    if (f->inicio == NULL) return -1;
+    nodoFila *temp = f->inicio;
+    int c = temp->alunos;
+    f->inicio = temp->prox;
+    if (f->inicio == NULL) f->ultimo = NULL;
+    free(temp);
+    return c;
+}
+
+int peek(fila *f){
+    if (f->inicio == NULL) return -1;
+    return f->inicio->alunos;
+}
+
+bool IsEmptyF(fila *f){
+    return (f->inicio == NULL);
 }
 
 int countStudents(int* students, int studentsSize, int* sandwiches, int sandwichesSize) {
+    pilha *p = initPilha();
+    fila *f = initFila();
 
-    typedef struct nodo{
-        int sanduiche;
-        struct nodo *prox;
-    }nodo;
-
-    nodo *pilha = NULL;
-    nodo *ultimo = NULL;
-    
-    void push(nodo **topo, nodo **ultimo, int c)
-    {
-        nodo *novoNodo = (nodo *) malloc (sizeof(nodo));
-
-        if(novoNodo == NULL)
-        {
-            return; //verifica se é possivel alocar memoria 
-        }
-
-
-        if(*topo == NULL)
-        {
-            *ultimo = novoNodo;
-        }
-
-        novoNodo->sanduiche = c;
-        novoNodo->prox = *topo;
-        *topo = novoNodo;
+    for (int i = sandwichesSize - 1; i >= 0; i--){
+        push(p, sandwiches[i]);
     }
 
-    int pop(nodo **topo)
-    {   
-         if(*topo == NULL)
-         {
-            return -1;
-         }
-         nodo *temp = *topo;
-         int c = temp->sanduiche;
-         *topo = (*topo)->prox;
-         free(temp);
-         return c;     
+   
+    for (int i = 0; i < studentsSize; i++){
+        enqueue(f, students[i]);
     }
 
-    int top(nodo *topo)
-    {
-        if(topo != NULL)
-        {
-            return topo->sanduiche;
-        }else{
-            return -1;
+    int tentativas = 0; 
+    while (!IsEmptyP(p) && tentativas < studentsSize){
+        if (top(p) == peek(f)){
+            pop(p);
+            dequeue(f);
+            tentativas = 0; 
+        } else {
+            enqueue(f, dequeue(f));
+            tentativas++;
         }
     }
+
     int count = 0;
-  int i = -1;
-
-     for(int l = 0; l < sandwichesSize; l++)
-    {
-        push(&pilha, &ultimo, sandwiches[l]); //empilha os sanduiches
-    }
-
-    for(int l = 0; l < studentsSize; l++){ //aqui ele conta o numero de estudantes
-    
-    if(students[l] == top(pilha))
-    {
-        pop(&pilha); ///CASO O ESTUDANTE CONSIGA PEGAR DE PRIMEIRA O SEU SANDUICHE
-        i++;
-    }
-    else {
-        int temporario = students[i]; //se ele nao conseguir, passa ele p uma variavel temp
-        int k = i; // pega o valor do indice que ele esta
-        for(int j = i+1; j < studentsSize; j++) //faz um for contando do indice +1
-        {
-            students[k] = students[j]; //realoca os valores de students
-            k++; //pega o proximo indice para realocar valores
-        }
-        students[studentsSize-1] = temporario; //bota no ultimo indice o valor temporario
+    while (!IsEmptyF(f)){
+        dequeue(f);
         count++;
     }
-    }
 
-    int variavel = 0;
-    int flag = 0;
-
-    if(pilha != NULL)
-    {
-        flag = 1;
-    }
-    while (pilha != NULL){ //literalmente aqui ele conta se ainda tem sanduba na pilha
-        variavel++; //se tem entao ele faz o count 
-        pop(&pilha); //e desempilha o sanduba 
-    }
-    
-    if(count == variavel && flag == 1){
-        return variavel-count;
-    }else{
-        return variavel+1;
-    }
+    return count;
 }
