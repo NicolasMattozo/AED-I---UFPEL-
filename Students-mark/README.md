@@ -46,7 +46,7 @@ Crio um loop para inserir os dados dentro da fila, armazeno numero de alunos que
 
 Faço um loop com base no meu numero de extraStudents e a cada extraStudents eu tiro uma classe da fila e adiciono +1 aluno e +1 aluno aprovado, e após isso eu recalculo a diferença e só depois eu subo para minha lista a classe com a nova diferença
 
-**Relacionando extraStudents:**
+**Somando Médias e Dividindo por Classes:**
 
 ![Função](imgs/function3.png)
 
