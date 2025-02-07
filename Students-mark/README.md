@@ -54,6 +54,8 @@ Crio um somátario, onde eu somo minhas classes e armazeno em média total, e ap
 
 
 **TESTES:**
+
+
 ![testes](imgs/case-test1.png)
 
 ![testes](imgs/case-teste2.png)
