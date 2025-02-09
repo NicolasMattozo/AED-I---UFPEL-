@@ -1,46 +1,47 @@
-typedef struct nodo
-{
+typedef struct nodo_t {
     double diferenca; // diferenca ao adicionar um estudante
     int pass;         // alunos que passarão no exame
     int total;        // alunos na turma
-    struct nodo *prox;
-} nodo;
+    struct nodo_t *prox;
+} nodo_t;
 
-typedef struct fila
-{
-    nodo *inicio;
-    nodo *ultimo;
-} fila;
+typedef struct fila_t {
+    nodo_t *inicio;
+    nodo_t *ultimo;
+} fila_t;
 
-// Função para inicializar a fila
-fila *init()
-{
-    fila *f = (fila *)malloc(sizeof(fila));
+/*
+====================
+Init
+ Inicializa a fila.
+====================
+*/
+fila_t *Init( void ) {
+    fila_t *f = (fila_t *)malloc( sizeof( fila_t ) );
     f->inicio = NULL;
     f->ultimo = NULL;
     return f;
 }
 
-void push(fila *fila, double diferenca, int pass, int total)
-{
-    nodo *novoNodo = (nodo *)malloc(sizeof(nodo));
+/*
+====================
+Push
+ Adiciona um novo nó à fila com base na diferença (prioridade).
+====================
+*/
+void Push( fila_t *fila, double diferenca, int pass, int total ) {
+    nodo_t *novoNodo = (nodo_t *)malloc( sizeof( nodo_t ) );
     novoNodo->diferenca = diferenca;
     novoNodo->pass = pass;
     novoNodo->total = total;
     novoNodo->prox = NULL;
 
-    if (fila->inicio == NULL || fila->inicio->diferenca <= diferenca)
-    {
-
+    if ( fila->inicio == NULL || fila->inicio->diferenca <= diferenca ) {
         novoNodo->prox = fila->inicio;
         fila->inicio = novoNodo;
-    }
-    else
-    {
-
-        nodo *temp = fila->inicio;
-        while (temp->prox != NULL && temp->prox->diferenca > diferenca)
-        {
+    } else {
+        nodo_t *temp = fila->inicio;
+        while ( temp->prox != NULL && temp->prox->diferenca > diferenca ) {
             temp = temp->prox;
         }
         novoNodo->prox = temp->prox;
@@ -48,48 +49,55 @@ void push(fila *fila, double diferenca, int pass, int total)
     }
 }
 
-nodo *pop(fila *fila)
-{
-    if (fila->inicio == NULL)
-    {
+/*
+====================
+Pop
+ Remove e retorna o nó de maior prioridade (início da fila).
+====================
+*/
+nodo_t *Pop( fila_t *fila ) {
+    if ( fila->inicio == NULL ) {
         return NULL;
     }
 
-    nodo *temp = fila->inicio;
+    nodo_t *temp = fila->inicio;
     fila->inicio = temp->prox;
     return temp;
 }
 
-double maxAverageRatio(int **classes, int classesSize, int *classesColSize, int extraStudents)
-{
-    fila *f = init();
-    double mediaTotal = 0.0;
+/*
+====================
+MaxAverageRatio
+ Calcula a média máxima das razões após adicionar alunos extras.
+====================
+*/
+double maxAverageRatio( int **classes, int classesSize, int *classesColSize, int extraStudents ) {
+    fila_t *f = Init();
+    double mediaTotal = 0.0f;
 
-    for (int i = 0; i < classesSize; i++)
-    {
+    for ( int i = 0; i < classesSize; i++ ) {
         int nExame = classes[i][0];
         int total = classes[i][1];
         double MediaLinha = (double)nExame / total;
 
-        double diferenca = ((double)(nExame + 1) / (total + 1)) - MediaLinha;
+        double diferenca = ( (double)( nExame + 1 ) / ( total + 1 ) ) - MediaLinha;
 
-        push(f, diferenca, nExame, total);
+        Push( f, diferenca, nExame, total );
     }
 
-    for (int i = 0; i < extraStudents; i++)
-    {
-        nodo *turma = pop(f);
+    for ( int i = 0; i < extraStudents; i++ ) {
+        nodo_t *turma = Pop( f );
 
         turma->pass = turma->pass + 1;
         turma->total = turma->total + 1;
 
-        double novodiferenca = ((double)(turma->pass + 1) / (turma->total + 1)) - ((double)turma->pass / turma->total);
+        double novodiferenca = ( (double)( turma->pass + 1 ) / ( turma->total + 1 ) ) - ( (double)turma->pass / turma->total );
 
-        push(f, novodiferenca, turma->pass, turma->total);
+        Push( f, novodiferenca, turma->pass, turma->total );
     }
-    nodo *temp = f->inicio;
-    while (temp != NULL)
-    {
+
+    nodo_t *temp = f->inicio;
+    while ( temp != NULL ) {
         mediaTotal += (double)temp->pass / temp->total;
         temp = temp->prox;
     }
