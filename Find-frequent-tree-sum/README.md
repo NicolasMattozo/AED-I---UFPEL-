@@ -21,6 +21,13 @@ Dado o rootde uma árvore binária, retorne a subárvore mais frequente sum . Se
 
 A soma da subárvore de um nó é definida como a soma de todos os valores do nó formados pela subárvore enraizada naquele nó (incluindo o próprio nó).
 
+**Complexidade algorítmica**
+O código feito apresenta complexidade O(N²)
+
+**Percorrer os nodos**
+
+O código 
+
 **Caso de Teste 1:**
 
 ![Caso de Teste 1](teste1.png)
