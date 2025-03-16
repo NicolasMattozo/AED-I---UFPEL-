@@ -48,11 +48,15 @@ O trabalhador só pode realizar trabalhos com dificuldade compatível com sua ca
 **Complexidade algorítmica**
 
 ![Complexidade](imgs/complexidade.png)
+
+
 O código feito apresenta complexidade O(N log N), pois o mesmo utiliza o qsort como método de ordenação da struct criada com intuito de armazenar os dados de lucro e dificuldade
 
 **Criando Estrutura**
 
 ![Estrutura](imgs/estrutura.png)
+
+
 Pensando na forma de solucionar o problema foi criado uma estrutura para armazenar os dados que estavam relacionados (lucro e dificuldade)
 
 **Inserção**
