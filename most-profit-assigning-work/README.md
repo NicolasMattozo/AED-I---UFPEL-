@@ -50,7 +50,7 @@ O trabalhador só pode realizar trabalhos com dificuldade compatível com sua ca
 ![Complexidade](imgs/complexidade.png)
 
 
-O código feito apresenta complexidade O(N log N), pois o mesmo utiliza o qsort como método de ordenação da struct criada com intuito de armazenar os dados de lucro e dificuldade
+O código feito apresenta complexidade O(N log N), pois o mesmo utiliza o qsort como método de ordenação da struct criada com intuito de armazenar os dados de lucro e dificuldade, e mesmo o pior caso sendo n^2, dado minha problemática e minha função otimizada, eu garanto o caso médio
 
 **Criando Estrutura**
 
@@ -63,6 +63,14 @@ Pensando na forma de solucionar o problema foi criado uma estrutura para armazen
 ![Inseção](imgs/insercao.png)
 
 Após criar a estrutura foi declarado um vetor de estruturas e depois foi inserido todos os dados de dificuldade e lucro dentro da mesma, logo em seguida chamamos a função qsort que fica responsável por organizar em forma crescente os dados do vetor a partir da dificuldade
+
+**Função Compare**
+
+![Inseção](imgs/compare.png)
+
+
+Esta é a função responsável pela organização do código em forma crescente
+
 
 **Atualizar Valores**
 
