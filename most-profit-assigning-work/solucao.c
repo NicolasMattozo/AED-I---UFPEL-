@@ -51,7 +51,5 @@ int maxProfitAssignment( int *dificuldade, int dificuldadeT, int *lucro, int luc
 		resposta += lucroTrabalho;
 	}
 
-	free( trabalhos );
-
 	return resposta;
 }
